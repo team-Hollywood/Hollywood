@@ -19,10 +19,12 @@ Rails.application.routes.draw do
   end
 
   devise_for :customers, path: :public, controllers: {
-    sessions: 'public/devise/sessions'
+    sessions: 'public/devise/sessions',
+    registrations: 'public/devise/registrations'
   }
   devise_for :admins, controllers: {
-    sessions: 'admins/devise/sessions'
+    sessions: 'admins/devise/sessions',
+    registrations: 'admins/devise/registrations'
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
