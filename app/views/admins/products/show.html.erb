@@ -1,2 +1,25 @@
-<h1>Admins::Products#show</h1>
-<p>Find me in app/views/admins/products/show.html.erb</p>
+<div class="row">
+	<h2>商品詳細</h2>
+
+	<div class="col-xs-4">
+		<%= attachment_image_tag @product, :image, size:"300x200", format:'jpeg', fallback: "no_image.jpg" %>
+	</div>
+	<div class="col-xs-8">
+		<label>商品名</label>
+		<p><%= @product.name %></p>
+		<label>商品説明</label>
+		<p><%= @product.discription %></p>
+		<label>ジャンル</label>
+		<p><%= @product.genre.name %></p>
+		<label>税込価格 (税抜価格)</label>
+		<p>(<%= @product.tax_excluded_price %>)</p>
+		<label>販売ステータス</label>
+		<% if @product.is_valid == true %>
+			<p>販売中</p>
+		<% else %>
+			<p>販売停止中</p>
+		<% end %>
+	</div>
+</div>
+
+>>>>>>> origin/develop
