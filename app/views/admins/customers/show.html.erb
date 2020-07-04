@@ -1,0 +1,48 @@
+<h4><%= @customer.lastname %><%= @customer.firstname %>さんの会員詳細</h4>
+
+<table class="table">
+		<tr>
+			<th>顧客ID</th>
+			<th>
+				<%= @customer.id %>
+				<% if @customer.is_registered == true %>
+					有効会員
+				<% else %>
+					退会済
+				<% end %>
+			</th>
+		</tr>
+
+		<tr>
+			<th>氏名</th>
+			<th><%= @customer.lastname %><%= @customer.firstname %></th>
+		</tr>
+
+		<tr>
+			<th>フリガナ</th>
+			<th><%= @customer.lastname_kana %><%= @customer.firstname_kana %></th>
+		</tr>
+
+		<tr>
+			<th>郵便番号</th>
+			<th><%= @customer.zip_code %></th>
+		</tr>
+
+		<tr>
+			<th>住所</th>
+			<th><%= @customer.address %></th>
+		</tr>
+
+		<tr>
+			<th>電話番号</th>
+			<th><%= @customer.address %></th>
+		</tr>
+
+		<tr>
+			<th>メールアドレス</th>
+			<th><%= @customer.email %></th>
+		</tr>
+</table>
+
+<%= link_to "編集する", edit_admins_customer_path(@customer) %>
+一覧
