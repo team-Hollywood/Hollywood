@@ -1,2 +1,37 @@
-<h1>Public::Products#index</h1>
-<p>Find me in app/views/public/products/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+      <div class="serch-bar">
+        ジャンル検索
+        <br><br>
+        <% @genres.each do |genre|%>
+          <div class="one-genre">
+            <%= link_to public_products_path(@products, genre_id: genre.id) do %>
+              <%= genre.name %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-xs-9">
+      <div class="products-index">
+        <% if params[:genre_id]%>
+          <%= Genre.find(params[:genre_id]).name %>一覧(全<%= @products.count%>件)
+        <% else%>
+          商品一覧(全<%= @products.count%>件)
+        <% end%>
+        <br><br>
+
+        <% @products.each do |product|%>
+            <div class="product-box">
+              <%= link_to(public_product_path(product.id)) do %>
+                  <%= attachment_image_tag(product, :image, :fill, 100, 100, fallback: "no_image.jpg") %>
+              <% end %>
+              <%= product.name %>
+              ￥<%= product.tax_excluded_price%>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
