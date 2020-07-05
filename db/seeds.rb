@@ -9,3 +9,8 @@ Admin.create!(
    email: 'host@host.com',
    password: 'hosthost'
 )
+
+Genre.create!(
+	name: 'ケーキ',
+	is_valid: 'true'
+)
