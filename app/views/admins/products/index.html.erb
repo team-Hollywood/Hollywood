@@ -1,5 +1,7 @@
+<div class="container">
 <div class="row">
 	<h2>商品一覧</h2>
+	<div class="col">
 	<table class="table">
 		<thead>
 		  	<tr>
@@ -10,7 +12,8 @@
 	  	<% @products.each do |product| %>
 	  	<tr>
 	  		<td><%= product.id %></td>
-	  		<td><%= product.name %></td>
+	  		<td><%= link_to admins_product_path(product) do %>
+	  			<%= product.name %><% end %></td>
 	  		<td><%= product.tax_excluded_price %></td>
 	  		<td><%= product.genre.name %></td>
 	  		<td><% if product.is_valid == true %>
@@ -23,4 +26,6 @@
 	  	<% end %>
 	  	</tbody>
 	</table>
+	</div>
+</div>
 </div>
