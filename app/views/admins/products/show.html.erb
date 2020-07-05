@@ -1,3 +1,4 @@
+<div class="container">
 <div class="row">
 	<h2>商品詳細</h2>
 
@@ -12,13 +13,15 @@
 		<label>ジャンル</label>
 		<p><%= @product.genre.name %></p>
 		<label>税込価格 (税抜価格)</label>
-		<p>(<%= @product.tax_excluded_price %>)</p>
+		<p><%= @product.tax_excluded_price * 1.08 %> (<%= @product.tax_excluded_price %>) 円</p>
 		<label>販売ステータス</label>
 		<% if @product.is_valid == true %>
 			<p>販売中</p>
 		<% else %>
 			<p>販売停止中</p>
 		<% end %>
+		<%= link_to "編集する", edit_admins_product_path, class:"btn" %>
 	</div>
+</div>
 </div>
 
