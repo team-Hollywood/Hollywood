@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :products, only: [:index, :show]
     resource :customers, only: [:show, :edit, :update, :unsubscribe]
     resource :homes, only: [:about]
+    get "customers/unsubscribe"
+    get "cart_items/destroy_all"
   end
 
   namespace :admins do
