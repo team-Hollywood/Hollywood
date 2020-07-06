@@ -5,8 +5,11 @@ Rails.application.routes.draw do
     resources :addresses, only: [:create, :update, :destroy, :edit, :index]
     resources :orders, only: [:new, :confirm, :thanks, :index, :show, :create]
     resources :products, only: [:index, :show]
-    resource :customers, only: [:show, :edit, :update, :unsubscribe]
-    resource :homes, only: [:about]
+    resource :customers, only: [:show, :edit, :update]
+    get "customers/unsubscribe"
+    get "cart_items/destroy_all"
+    get "homes/about" => "public/homes/about"
+    patch "customers/hide" => "public/customers/hide"
   end
 
   namespace :admins do
