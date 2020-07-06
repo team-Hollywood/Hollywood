@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :confirm, :thanks, :index, :show, :create]
     resources :products, only: [:index, :show]
     resource :customers, only: [:show, :edit, :update, :unsubscribe]
-    resource :homes, only: [:about]
+    get "homes/about" => "public/homes/about"
   end
 
   namespace :admins do
