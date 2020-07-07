@@ -14,7 +14,7 @@
 	  		<td><%= product.id %></td>
 	  		<td><%= link_to admins_product_path(product) do %>
 	  			<%= product.name %><% end %></td>
-	  		<td><%= product.tax_excluded_price %></td>
+	  		<td><%= product.tax_excluded_price.to_s(:delimited) %></td>
 	  		<td><%= product.genre.name %></td>
 	  		<td><% if product.is_valid == true %>
 	  				<p>販売中</p>

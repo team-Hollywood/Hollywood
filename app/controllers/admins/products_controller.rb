@@ -10,7 +10,7 @@ class Admins::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to admins_products_path
+      redirect_to admins_products_path, notice: "新しい商品を追加しました！"
     else
       render :new
     end
@@ -27,7 +27,7 @@ class Admins::ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
-      redirect_to admins_product_path(@product)
+      redirect_to admins_product_path(@product), notice: "商品内容を変更しました！"
     else
       render :edit
     end
@@ -38,8 +38,4 @@ class Admins::ProductsController < ApplicationController
       params.require(:product).permit( :genre_id, :is_valid, :name, :tax_excluded_price, :discription, :image )
   end
 
-  private
-  def product_params
-      params.require(:product).permit( :genre_id, :is_valid, :name, :tax_excluded_price, :discription, :image )
-  end
 end

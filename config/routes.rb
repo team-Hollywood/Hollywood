@@ -3,12 +3,15 @@ Rails.application.routes.draw do
   namespace :public do
     resources :cart_items, only: [:create, :update, :destroy, :destroy_all, :index]
     resources :addresses, only: [:create, :update, :destroy, :edit, :index]
-    resources :orders, only: [:new, :confirm, :thanks, :index, :show, :create]
+    resources :orders, only: [:new, :index, :show, :create]
+    get "orders/confirm"
+    get "orders/thanks"
     resources :products, only: [:index, :show]
-    resource :customers, only: [:show, :edit, :update, :unsubscribe]
+    resource :customers, only: [:show, :edit, :update]
     get "customers/unsubscribe"
     get "cart_items/destroy_all"
     get "homes/about" => "public/homes/about"
+    patch "customers/hide" => "public/ucstomers/hide"
   end
 
   namespace :admins do

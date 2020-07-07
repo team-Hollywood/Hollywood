@@ -13,7 +13,8 @@
 		<label>ジャンル</label>
 		<p><%= @product.genre.name %></p>
 		<label>税込価格 (税抜価格)</label>
-		<p><%= @product.tax_excluded_price * 1.08 %> (<%= @product.tax_excluded_price %>) 円</p>
+		<% price = @product.tax_excluded_price * 1.1 %>
+		<p><%= price.round.to_s(:delimited) %> (<%= @product.tax_excluded_price.to_s(:delimited) %>) 円</p>
 		<label>販売ステータス</label>
 		<% if @product.is_valid == true %>
 			<p>販売中</p>
