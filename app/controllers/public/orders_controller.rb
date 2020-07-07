@@ -4,6 +4,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
+    @cart_items = CartItem.where(customer_id: current_customer.id)
+
   end
 
   def thanks
@@ -18,5 +20,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+    customer_id = current_customer.id
+    
   end
 end
