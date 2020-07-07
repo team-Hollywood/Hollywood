@@ -1,18 +1,22 @@
-<h2>配送先編集</h2>
-<%= form_for(@address, url:public_address_path) do |f| %>
-	<div class="field">
-		<%= f.label :郵便番号（ハイフンなし） %>
-		<%= f.text_field :zip_code, autofocus: true, autocomplete: "postal-code" %>
-	</div>
+<div class="container">
+	<div class="row">
+		<h2>配送先編集</h2>
+		<%= form_for(@address, url:public_address_path) do |f| %>
+		<div class="field">
+			<%= f.label :郵便番号（ハイフンなし） %>
+			<%= f.text_field :zip_code, autofocus: true, autocomplete: "postal-code" %>
+		</div>
 
-	<div class="field">
-		<%= f.label :住所 %>
-		<%= f.text_field :address, autofocus: true, autocomplete: "street-address", size:"70" %>
-	</div>
+		<div class="field">
+			<%= f.label :住所 %>
+			<%= f.text_field :address, autofocus: true, autocomplete: "street-address", size:"70" %>
+		</div>
 
-	<div class="field">
-		<%= f.label :宛名 %>
-		<%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+		<div class="field">
+			<%= f.label :宛名 %>
+			<%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+		</div>
+			<%= f.submit "編集する",class: "btn btn-primary" %>
+		<% end %>
 	</div>
-	<%= f.submit "編集する",class: "btn btn-primary" %>
-<% end %>
+</div>
