@@ -35,7 +35,7 @@
 
 		<tr>
 			<th>電話番号</th>
-			<th><%= @customer.address %></th>
+			<th><%= @customer.phone %></th>
 		</tr>
 
 		<tr>
@@ -45,4 +45,4 @@
 </table>
 
 <%= link_to "編集する", edit_admins_customer_path(@customer) %>
-一覧
+<%= link_to "注文履歴一覧を見る", admins_orders_path, class: "btn btn-info" %>
