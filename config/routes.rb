@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     get "customers/unsubscribe"
     get "cart_items/destroy_all"
     get "homes/about" => "public/homes/about"
-    patch "customers/hide" => "public/ucstomers/hide"
+    patch "customers/hide" => "public/customers/hide" #退会時のupdateアクション
   end
 
   namespace :admins do
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show, :update]
     resources :products, only: [:index, :new, :create, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :searches, only: [:index]
     get "homes/top"
   end
 

@@ -1,2 +1,63 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<h4><%= current_customer.lastname %><%= current_customer.firstname %>さんの会員情報編集</h4>
+
+
+<%= form_for(current_customer, url:public_customers_path) do |f| %>
+
+<% if current_customer.errors.any? %>
+  <h3><%= current_customer.errors.count %>error occurrence</h3><!--エラーメッセ-->
+  <ul>
+    <% current_customer.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<table class="table">
+  <thead>
+  	<tr>
+  		<th></th>
+  		<th></th>
+  		<th></th>
+  	</tr>
+  </thead>
+  <tbody>
+  	<tr>
+  		<th><%= f.label :名前 %></th>
+  		<th>（姓）<%= f.text_field :lastname, autofocus: true %></th>
+  		<th>（名）<%= f.text_field :firstname, autofocus: true %></th>
+  	</tr>
+
+    <tr>
+    	<th><%= f.label :フリガナ %></th>
+    	<th>（セイ）<%= f.text_field :lastname_kana, autofocus: true %></th>
+    	<th>（メイ）<%= f.text_field :firstname_kana, autofocus: true %></th>
+    </tr>
+
+    <tr>
+      <th><%= f.label :メールアドレス %></th>
+      <th colspan="2"><%= f.text_field :address, autofocus: true %></th>
+    </tr>
+
+    <tr>
+    	<th><%= f.label :郵便番号（ハイフンなし） %></th>
+    	<th colspan="2"><%= f.text_field :zip_code, autofocus: true %></th>
+    </tr>
+
+    <tr>
+    	<th><%= f.label :住所 %></th>
+    	<th colspan="2"><%= f.text_field :address, autofocus: true %></th>
+    </tr>
+    
+    <tr>
+    	<th><%= f.label :電話番号（ハイフンなし） %></th>
+    	<th colspan="2"><%= f.text_field :phone, autofocus: true %></th>
+    </tr>
+
+  </tbody>
+</table>
+
+  <%= f.submit "編集内容を保存する", class: "btn btn-info" %>
+
+  <h4><%= link_to "退会する", public_customers_unsubscribe_path, class: "btn btn-danger" %> </h4>
+
+<% end %>

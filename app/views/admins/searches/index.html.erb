@@ -1,0 +1,35 @@
+
+<h4>search for '<%= @word %>'</h4>
+
+<% if @customers.any? %>
+	<h4><会員></h4>
+	<%= render 'admins/customers/customers', customers: @customers %>
+<% end %>
+
+<% if @products.any? %>
+	<h4><商品></h4>
+		<table class="table">
+			<thead>
+			  	<tr>
+			  		<th>商品ID</th><th>商品名</th><th>税抜き価格</th><th>ジャンル</th><th>ステータス</th>
+			  	</tr>
+		  	</thead>
+		  	<tbody>
+		  	<% @products.each do |product| %>
+		  	<tr>
+		  		<td><%= product.id %></td>
+		  		<td><%= link_to admins_product_path(product) do %>
+		  			<%= product.name %><% end %></td>
+		  		<td><%= product.tax_excluded_price %></td>
+		  		<td><%= product.genre.name %></td>
+		  		<td><% if product.is_valid == true %>
+		  				<p>販売中</p>
+		  			<% else %>
+		  				<p>販売停止中</p>
+		  			<% end %>
+		  		</td>
+		  	</tr>
+		  	<% end %>
+		  	</tbody>
+		</table>
+<% end %>
