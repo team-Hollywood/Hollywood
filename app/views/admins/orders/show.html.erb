@@ -4,16 +4,18 @@
 		<div class="col">
 		<h2>注文履歴詳細</h2>
 		<label>購入者</label>
-		<%= @order.customers.lastname %>
-		<%= @order.customers.firstname %>
+		<%= @order.customer.lastname %>
+		<%= @order.customer.firstname %>
 		<label>配送先</label>
 		<%= @order.zip_code %><%= @order.address %><br>
 		<%= @order.name %>
 		<label>支払い方法</label>
 		<%= @order.payment_method %>
 		<label>注文ステータス</label>
-		<%= form.select :order_status, Order.order_status.keys,{} %>
-		<%= link_to "更新", admins_order_path(@order) %>
+		<% form_for(@order, url: admins_order_path) do |f| %>
+		<%= f.select :order_status, Order.order_status.keys,{} %>
+		<%= f.submit "更新" %>
+		<% end %>
 		</div>
 	</div>
 

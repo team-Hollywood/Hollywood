@@ -37,9 +37,9 @@
                     <%= f.submit "変更", class: "btn btn-primary"%>
                   <% end %>
                 </td>
-                <% subtotal = cart_item.amount * Product.find(cart_item.product_id).tax_excluded_price%>
+                <% subtotal = cart_item.amount * Product.find(cart_item.product_id).tax_excluded_price * 1.1 %>
                 <% total += subtotal%>
-                <td><%= subtotal %></td>
+                <td><%= subtotal.round.to_s(:delimited) %></td>
                 <td><%= link_to "削除する", public_cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger"%></td>
               </tr>
             <% end %>
