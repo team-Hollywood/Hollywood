@@ -1,23 +1,32 @@
+<div class="row">
+  <div class="col-xs-6 col-xs-offset-3">
+
 <h4>会員の方はこちらからログイン</h4>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :パスワード %>
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    <table class="table">
+        <tr>
+            <th><%= f.label :メールアドレス %></th>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+        </tr>
 
-  <%= link_to "=>パスワードを忘れた方はこちら", new_customer_password_path %>
+        <tr>
+            <th><%= f.label :パスワード %></th>
+            <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+        </tr>
+    </table>
 
-  <div class="actions">
-    <%= f.submit "ログイン", class: "btn btn-info" %>
-  </div>
+        <%= link_to "=>パスワードを忘れた方はこちら", new_customer_password_path, class: "registration-new-text" %>
+
+        <div class="row actions">
+            <%= f.submit "ログイン", class: "btn btn-primary col-xs-2 col-xs-offset-5 " %>
+        </div>
 
 <% end %>
 
 <h4>登録がお済みでない方</h4>
 <%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください
+
+  </div>
+</div>

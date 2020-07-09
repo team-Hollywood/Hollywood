@@ -14,7 +14,7 @@
 					<th>
 						<%= @customer.id %>
 						<% if @customer.is_registered == true %>
-						有効会員
+						<span>有効会員</span>
 						<% else %>
 						退会済
 						<% end %>
@@ -22,11 +22,11 @@
 				</tr>
 				<tr>
 					<th>氏名</th>
-					<th><%= @customer.lastname %><%= @customer.firstname %></th>
+					<th><%= @customer.lastname %> <%= @customer.firstname %></th>
 				</tr>
 				<tr>
 					<th>フリガナ</th>
-					<th><%= @customer.lastname_kana %><%= @customer.firstname_kana %></th>
+					<th><%= @customer.lastname_kana %> <%= @customer.firstname_kana %></th>
 				</tr>
 				<tr>
 					<th>郵便番号</th>
