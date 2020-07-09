@@ -1,13 +1,12 @@
-
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
       <h2>注文情報入力</h2><br><br>
-      <%= form_with(model:@order, url:public_orders_confirm_path, method: :get) do |f|%>
+      <%= form_with(model: order, local: true, url: public_orders_confirm_path) do |f|%>
         <h3>支払い方法</h3>
-        <%= f.radio_button :payment_method, :クレジットカード, label: "クレジットカード" %>
+        <%= f.radio_button("payment", "0") %>
         <%= f.label :クレジットカード%><br>
-        <%= f.radio_button :payment_method, :銀行振込 %>
+        <%= radio_button_tag("payment", "1")  %>
         <%= f.label :銀行振込　%><br>
 
         <h3>お届け先</h3>
@@ -20,8 +19,7 @@
           <%= radio_button_tag("address","2")%>
           <%= f.label "登録済住所から選択"%><br>
 
-          <%= select_tag :registered_address_id, options_from_collection_for_select(Address.where(customer_id: current_customer.id), :id, :address), include_blank: true%>
-
+          <%= select_tag :registered_address_id, options_from_collection_for_select(@address, :id, :address), include_blank: true%>
 
           <br><br>
           <%= radio_button_tag("address","3")%>
@@ -41,7 +39,7 @@
             </tr>
           </table>
 
-          <%= f.submit "購入を確定する", class: "btn btn-primary"%>
+          <%= f.submit "確認画面へ進む", class: "btn btn-primary"%>
       <% end %>
     </div>
   </div>
