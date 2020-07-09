@@ -2,8 +2,7 @@
   <div class="row">
     <div class="col-xs-3">
       <div class="serch-bar">
-        ジャンル検索
-        <br><br>
+        <h4>ジャンル検索</h4>
         <% @genres.each do |genre|%>
           <div class="one-genre">
             <%= link_to public_products_path(@products, genre_id: genre.id) do %>
@@ -18,19 +17,30 @@
     <br>
 
     <div class="col-xs-9">
-      <div class="product-detail">
-        <%= attachment_image_tag(@product, :image, :fill, 200, 200, fallback: "no_image.jpg") %>
-        <%= @product.name %>
-        <%= @product.discription%>
-        ￥<%= @product.tax_excluded_price%>(税込み)
+        <div class="item-image-show">
+          <%= attachment_image_tag @product, :image, size:"300x200", format:'jpeg', fallback: "no_image.jpg" %>
+        </div>
+        <div class="item-text-show">
+          <div class="item-name">
+            <h3><%= @product.name %></h3><br>
+          </div>
+          <div class="item-discription">
+            <%= @product.discription%><br><br>
+          </div>
+          <div class="item-price">
+            <h4>￥<%= @product.tax_excluded_price%>(税込み)</h4><br>
+          </div>
 
-        <%= form_with(model: @cart_item, url: public_cart_items_path) do |f|%>
-          <%= f.hidden_field :product_id, :value => params[:id] %>
-          <%= f.label :amount, "数量"%>
-          <%= f.select :amount, [1,2,3,4,5,6,7,8,9]%>
-          <%= f.submit "カートに入れる", class: "btn btn-primary"%>
-        <% end %>
-      </div>
+          <% if customer_signed_in? %>
+            <div align="right" class="amount-select-box">
+              <%= form_with(model: @cart_item, url: public_cart_items_path) do |f|%>
+                <%= f.hidden_field :product_id, :value => params[:id] %>
+                <%= f.label :amount, "数量"%>
+                <%= f.select :amount, [1,2,3,4,5,6,7,8,9]%>
+                <%= f.submit "カートに入れる", class: "btn btn-primary"%>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
     </div>
-  </div>
 </div>
