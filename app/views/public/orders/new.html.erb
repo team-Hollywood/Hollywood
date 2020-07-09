@@ -4,9 +4,9 @@
       <h2>注文情報入力</h2><br><br>
       <%= form_with(model: @order, local: true, url: public_orders_confirm_path) do |f|%>
         <h3>支払い方法</h3>
-        <%= f.radio_button("payment", "0") %>
+        <label><%= radio_button_tag("payment_method", "0") %></label>
         <%= f.label :クレジットカード%><br>
-        <%= radio_button_tag("payment", "1")  %>
+        <label><%= radio_button_tag("payment_method", "1") %></label>
         <%= f.label :銀行振込　%><br>
 
         <h3>お届け先</h3>
