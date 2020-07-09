@@ -12,18 +12,18 @@
 				</tr>
 			</thead>
 			<tbody>
+				<% total = 0 %>
 				<% @cart_items.each do |cart_item| %>
 					<tr>
-						<td>
-							<%= attachment_image_tag(cart_item.product, :image, :fill, 200, 200, fallback: "no_image.jpg") %>
-							<%= Product.find(cart_item.product_id).name %>
-						</td>
-						<% per_total = Product.find(cart_item.product_id).tax_excluded_price * 1.1 %>
-						<td><%= per_total.to_s(:delimited) %></td>
-						<td><%= cart_item.amount %></td>
-						<% subtotal = cart_item.amount * per_total %>
-						<% total += subtotal%>
-						<td><%= subtotal.to_s(:delimited) %></td>
+		                <td>
+		                  <%= attachment_image_tag(cart_item.product, :image, :fill, 70, 70, fallback: "no_image.jpg") %>
+		                  <%= cart_item.product.name %>
+		                </td>
+		                <td><%= (cart_item.product.tax_excluded_price * 1.1).to_s(:delimited) %></td>
+		                <td><%= cart_item.amount %></td>
+		                <% subtotal = (cart_item.amount * cart_item.product.tax_excluded_price * 1.1) %>
+		                <% total += subtotal %>
+		                <td><%= subtotal.to_s(:delimited) %></td>
 					</tr>
 				<% end %>
 			</tbody>
@@ -48,11 +48,26 @@
 
 </div>
 
-<h4>支払い方法</h4>
+<h4>支払方法：<%= @payment %></h4>
 
-<h4>お届け先</h4>
+<h4>
+	お届け先：
+	<% if @choice == "1" %>
+		〒<%= @address.zip_code %>
+		<%= @address.address %>
+		<%= @address.lastname %>
+		<%= @address.firstname %>
+	<% elsif @choice == "2" %>
+		〒<%= @address.zip_code %>
+		<%= @address.address %>
+		<%= @address.name %>
+	<% elsif @choice == "3" %>
+		〒<%= @order.zip_code %>
+		<%= @order.address %>
+		<%= @order.name %>
+	<% end %>
+</h4>
 
-<%= link_to "購入を確定する", public_orders_path, method: :post, class: "btn btn-info" %>
-
+<%= link_to "購入を確定する", public_orders_path, method: :post, class: "btn btn-success" %>
 
 
