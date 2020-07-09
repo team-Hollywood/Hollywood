@@ -5,15 +5,15 @@
 		<h2>注文履歴詳細</h2>
 		<label>購入者</label>
 		<%= @order.customer.lastname %>
-		<%= @order.customer.firstname %>
+		<%= @order.customer.firstname %><br>
 		<label>配送先</label>
 		<%= @order.zip_code %><%= @order.address %><br>
-		<%= @order.name %>
+		<%= @order.name %><br>
 		<label>支払い方法</label>
-		<%= @order.payment_method %>
+		<%= @order.payment_method %><br>
 		<label>注文ステータス</label>
-		<% form_for(@order, url: admins_order_path) do |f| %>
-		<%= f.select :order_status, Order.order_status.keys,{} %>
+		<%= form_for(@order, url: admins_order_path) do |f| %>
+		<%= f.select :order_status, Order.order_statuses.keys %>
 		<%= f.submit "更新" %>
 		<% end %>
 		</div>
@@ -34,16 +34,18 @@
 			</thead>
 			<tbody>
 			<% @order.ordered_items.each do |order| %>
-				<tr>
-					<td><%= order.product.name %></td>
-					<td><%= order.tax_included_price.to_s(:delimited) %></td>
-					<td><%= order.amount %></td>
-					<% subtotal = order.tax_included_price * order.amount %>
-					<td><%= subtotal.to_s(:delimited) %></td>
-					<td><%= order.production_status %></td>
-					<td><%= link_to "更新",adomins_ordered_item_path(@order_item) %></td>
-				</tr>
-				<% total += subtotal %>
+			<tr>
+				<td><%= order.product.name %></td>
+				<td><%= order.tax_included_price.to_s(:delimited) %></td>
+				<td><%= order.amount %></td>
+				<% subtotal = order.tax_included_price * order.amount %>
+				<td><%= subtotal.to_s(:delimited) %></td>
+			<%= form_for(order, url: admins_ordered_item_path) do |f| %>
+				<td><%= f.select :production_status,  OrderedItem.production_statuses.keys %></td>
+				<td><%= f.submit "更新" %></td>
+			<% end %>
+			</tr>
+			<% total += subtotal %>
 			<% end %>
 			</tbody>
 		</table>

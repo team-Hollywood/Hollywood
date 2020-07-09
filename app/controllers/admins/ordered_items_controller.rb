@@ -2,8 +2,8 @@ class Admins::OrderedItemsController < ApplicationController
    before_action :authenticate_admin!
 
   def update
-  	@ordered_item = Ordered_items.find(params[:id])
-  	if @ordered_items.update(ordered_items_params)
+  	@ordered_item = OrderedItem.find(params[:id])
+  	if @ordered_item.update(ordered_items_params)
   		redirect_to admins_orders_path
   	else
   		render 'orders/show'
@@ -11,6 +11,6 @@ class Admins::OrderedItemsController < ApplicationController
   end
   private
 	def ordered_items_params
-	  params.require(:ordered_items).permit(:production_status)
+	  params.require(:ordered_item).permit(:production_status)
 	end
 end
