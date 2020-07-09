@@ -71,3 +71,4 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 gem 'pry-byebug'
+gem 'kaminari','~> 1.2.1'

@@ -14,3 +14,4 @@ Genre.create!(
 	name: 'ケーキ',
 	is_valid: 'true'
 )
+

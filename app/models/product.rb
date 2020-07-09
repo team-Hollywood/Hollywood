@@ -3,4 +3,9 @@ class Product < ApplicationRecord
   has_many :cart_items
   has_many :ordered_items
   belongs_to :genre
+
+  validates :discription, presence: true
+  validates :name, presence: true
+  validates :image, presence: true
+  validates :tax_excluded_price, numericality: { only_integer:true }
 end

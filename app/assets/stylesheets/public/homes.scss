@@ -1,3 +1,63 @@
 // Place all the styles related to the public/homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+h1 {
+	text-align:center;
+	padding-top: 50px;
+}
+
+h2 {
+	padding-top: 10px;
+}
+
+.propaganda {
+	text-align:center;
+	padding-bottom: 10px;
+	line-height: 40px;
+}
+
+.preface {
+	text-align:center;
+	padding-top: 120px;
+	font-size: 20px;
+}
+
+.image {
+	text-align:center;
+}
+
+.introduction {
+	background: image-url('3341313_s.jpg');
+	height: 350px;
+	width: 800px;
+	background-size:cover;
+	margin-top: 100px;
+}
+
+h3 {
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	border-bottom: solid 1px #000000;
+}
+
+.serch-bar {
+    border: solid 1px #000000;
+    position: absolute;
+    left: 80px;
+    top: 100px;
+
+}
+
+.col-xs-3 {
+	position: relative;
+}
+
+.one-genre {
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	font-size: 20px;
+}

@@ -2,26 +2,26 @@
 <div class="row">
 	<h2>商品詳細</h2>
 
-	<div class="col-xs-4">
+	<div class="col-xs-4 form">
 		<%= attachment_image_tag @product, :image, size:"300x200", format:'jpeg', fallback: "no_image.jpg" %>
 	</div>
-	<div class="col-xs-8">
-		<label>商品名</label>
-		<p><%= @product.name %></p>
-		<label>商品説明</label>
-		<p><%= @product.discription %></p>
-		<label>ジャンル</label>
-		<p><%= @product.genre.name %></p>
-		<label>税込価格 (税抜価格)</label>
+	<div class="col-xs-8 form">
+		<dt><label>商品名</label></dt>
+		<dd><p><%= @product.name %></p></dd>
+		<dt><label>商品説明</label></dt>
+		<dd><p><%= @product.discription %></p></dd>
+		<dt><label>ジャンル</label></dt>
+		<dd><p><%= @product.genre.name %></p></dd>
+		<dt><label>税込価格 (税抜価格)</label></dt>
 		<% price = @product.tax_excluded_price * 1.1 %>
-		<p><%= price.round.to_s(:delimited) %> (<%= @product.tax_excluded_price.to_s(:delimited) %>) 円</p>
-		<label>販売ステータス</label>
+		<dd><p><%= price.round.to_s(:delimited) %> (<%= @product.tax_excluded_price.to_s(:delimited) %>) 円</p></dd>
+		<dt><label>販売ステータス</label></dt>
 		<% if @product.is_valid == true %>
-			<p>販売中</p>
+			<dd><p>販売中</p></dd>
 		<% else %>
-			<p>販売停止中</p>
+			<dd><p>販売停止中</p></dd>
 		<% end %>
-		<%= link_to "編集する", edit_admins_product_path, class:"btn" %>
+		<div class="button"><%= link_to "編集する", edit_admins_product_path, class:"btn btn-info" %></div>
 	</div>
 </div>
 </div>
