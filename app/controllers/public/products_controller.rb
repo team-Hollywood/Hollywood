@@ -1,13 +1,11 @@
 class Public::ProductsController < ApplicationController
-  PER = 8
-
   def index
     @genres = Genre.all
 
     if params[:genre_id]
-      @products = Product.where(genre_id: params[:genre_id]).page(params[:page]).per(4)
+      @products = Product.where(genre_id: params[:genre_id]).page(params[:page]).per(6)
     else
-      @products = Product.all.page(params[:page]).per(4)
+      @products = Product.all.page(params[:page]).per(6)
     end
   end
 

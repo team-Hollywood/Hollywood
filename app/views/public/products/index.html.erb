@@ -1,45 +1,43 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-2">
-      <div class="serch-bar">
+      <div class="serch-bar-index">
         <h4>ジャンル検索</h4>
         <% @genres.each do |genre|%>
           <div class="one-genre">
             <%= link_to public_products_path(@products, genre_id: genre.id) do %>
               <%= genre.name %>
             <% end %>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
+          </div>
+        <% end %>
       </div>
     </div>
+
     <div class="col-xs-10">
       <div class="products-index">
         <% if params[:genre_id]%>
           <%= Genre.find(params[:genre_id]).name %>一覧(全<%= @products.count%>件)
         <% else%>
-          <h4>商品一覧(全<%= @products.count%>件)</h4>
+          <h3>商品一覧(全<%= @products.count%>件)</h3>
         <% end%>
         <br><br>
         <div class="product-box">
           <% @products.each do |product|%>
           <div class="item-box-index">
-            <div class="item-image-index">
+              <div class="item-image-index">
                 <%= link_to(public_product_path(product.id)) do %>
-                    <%= attachment_image_tag product, :image, size:"170x120", format:'jpeg', fallback: "no_image.jpg" %>
+                  <%= attachment_image_tag product, :image, size:"170x120", format:'jpeg', fallback: "no_image.jpg" %>
                 <% end %>
               </div>
               <div class="item-text-index">
                 <%= product.name %>
                 ￥<%= product.tax_excluded_price%>
               </div>
-            </div>
-          <% end %>
-          <div class="page-nation">
-            <%= paginate @products %>
           </div>
-        </div>
+          <% end %>
+      </div>
+      <div align="center" class="page-nation">
+        <%= paginate @products %>
       </div>
       </div>
     </div>

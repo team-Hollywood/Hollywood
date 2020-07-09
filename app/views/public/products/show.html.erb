@@ -1,38 +1,35 @@
 <div class="container">
   <div class="row">
+
     <div class="col-xs-2">
-      <div class="serch-bar">
+      <div class="serch-bar-index">
         <h4>ジャンル検索</h4>
         <% @genres.each do |genre|%>
           <div class="one-genre">
             <%= link_to public_products_path(@products, genre_id: genre.id) do %>
               <%= genre.name %>
             <% end %>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
+          </div>
+        <% end %>
       </div>
     </div>
-    <br>
-    <br>
-    <br>
 
-    <div class="col-xs-9">
+    <div class="col-xs-10">
+      <div class="product-show">
         <div class="item-image-show">
-          <%= attachment_image_tag @product, :image, size:"300x200", format:'jpeg', fallback: "no_image.jpg" %>
+          <%= attachment_image_tag @product, :image, size:"400x300", format:'jpeg', fallback: "no_image.jpg" %>
         </div>
-        <div class="item-text-show">
-          <div class="item-name">
-            <h3><%= @product.name %></h3><br>
+
+        <div class="item-text-show item-name">
+          <div class="item-detail">
+            <h2><%= @product.name %></h2>
           </div>
-          <div class="item-discription">
+          <div class="item-detail item-discription">
             <%= @product.discription%><br><br>
           </div>
-          <div class="item-price">
-            <h4>￥<%= @product.tax_excluded_price%>(税込み)</h4><br>
+          <div class="item-detail item-price">
+            <h2>￥<%= @product.tax_excluded_price%>(税込み)</h2><br>
           </div>
-
           <% if customer_signed_in? %>
             <div align="right" class="amount-select-box">
               <%= form_with(model: @cart_item, url: public_cart_items_path) do |f|%>
@@ -44,5 +41,7 @@
             </div>
           <% end %>
         </div>
+      </div>
     </div>
+  </div>
 </div>
