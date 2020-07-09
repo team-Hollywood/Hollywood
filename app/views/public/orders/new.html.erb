@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-12">
       <h2>注文情報入力</h2><br><br>
-      <%= form_with(model: order, local: true, url: public_orders_confirm_path) do |f|%>
+      <%= form_with(model: @order, local: true, url: public_orders_confirm_path) do |f|%>
         <h3>支払い方法</h3>
         <%= f.radio_button("payment", "0") %>
         <%= f.label :クレジットカード%><br>
