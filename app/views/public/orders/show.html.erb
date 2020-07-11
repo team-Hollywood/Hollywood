@@ -55,8 +55,7 @@
 
 	<div class="col-xs-3">
 		<h4>請求情報</h4>
-		<div class="table-responsive">
-			<table class="table table-bordered">
+		<table class="table table-bordered">
 				<tbody>
 					<tr>
 						<th>商品合計</th><td><%= total.round.to_s(:delimited) %></td>
@@ -68,8 +67,7 @@
 						<th>ご請求額</th><td><%= (total + 800).round.to_s(:delimited) %></td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+		</table>
 	</div>
 </div>
 
