@@ -49,51 +49,52 @@
 </div>
 
 
-      <%= form_with(model: @order, local: true, url: public_orders_path) do |f|%>
+<%= form_with(model: @order, local: true, url: public_orders_path) do |f|%>
+	<% if params[:payment_method] == "0" %>
+		<h3>支払い方法</h3>クレジットカード
+		<%= f.hidden_field :payment_method, :value => "クレジットカード" %>
 
-        <% if params[:payment_method] == "0" %>
-        	<h3>支払い方法</h3>クレジットカード
-        	<%= f.hidden_field :payment_method, :value => "クレジットカード" %>
-        <% else %>
-        	<h3>支払い方法</h3>銀行振り込み
-        	<%= f.hidden_field :payment_method, :value => "銀行振込" %>
-        <% end %>
-
-
-
-        <h3>お届け先</h3>
-
-          <% if params[:address] == "1" %>
-          <%= current_customer.zip_code%><%= current_customer.address%><%= current_customer.lastname%><%= current_customer.firstname%>
-          <%= f.hidden_field :zip_code, :value => current_customer.zip_code %>
-          <%= f.hidden_field :address, :value => current_customer.address %>
-          <%= f.hidden_field :name, :value => current_customer.lastname + current_customer.firstname %>
-
-          <% elsif params[:address] == "2" %>
-          <%= @address.zip_code %><%= @address.address %><%= @address.name %>
-          <%= f.hidden_field :zip_code, :value => @address.zip_code %>
-          <%= f.hidden_field :address, :value => @address.address %>
-          <%= f.hidden_field :name, :value => @address.name %>
-
-		<% elsif params[:address] == "3" %>
-
-          <%= params[:order][:zip_code] %>
-          <%= params[:order][:address] %>
-          <%= params[:order][:name] %>
-
-             <%= f.hidden_field :zip_code, :value => params[:order][:zip_code] %>
-             <%= f.hidden_field :address, :value => params[:order][:address] %>
-             <%= f.hidden_field :name, :value => params[:order][:name] %>
+	<% else %>
+		<h3>支払い方法</h3>銀行振り込み
+		<%= f.hidden_field :payment_method, :value => "銀行振込" %>
+	<% end %>
 
 
-          <% end %>
 
-          <% price = total + 800 %>
-          <%= f.hidden_field :total, :value => price %>
+	<h3>お届け先</h3>
 
+	<% if params[:address] == "1" %>
+		<%= current_customer.zip_code%><%= current_customer.address%><%= current_customer.lastname%><%= current_customer.firstname%>
+		<%= f.hidden_field :zip_code, :value => current_customer.zip_code %>
+		<%= f.hidden_field :address, :value => current_customer.address %>
+		<%= f.hidden_field :name, :value => current_customer.lastname + current_customer.firstname %>
 
-          <%= f.submit "購入を確定する", class: "btn btn-success"%>
+	<% elsif params[:address] == "2" %>
+		<%= @address.zip_code %><%= @address.address %><%= @address.name %>
+		<%= f.hidden_field :zip_code, :value => @address.zip_code %>
+		<%= f.hidden_field :address, :value => @address.address %>
+		<%= f.hidden_field :name, :value => @address.name %>
 
-        <% end %>
+	<% elsif params[:address] == "3" %>
+		<%= params[:order][:zip_code] %>
+		<%= params[:order][:address] %>
+		<%= params[:order][:name] %>
+
+		<%= f.hidden_field :zip_code, :value => params[:order][:zip_code] %>
+		<%= f.hidden_field :address, :value => params[:order][:address] %>
+		<%= f.hidden_field :name, :value => params[:order][:name] %>
+
+	<% end %>
+
+	<% price = total + 800 %>
+	<%= f.hidden_field :total, :value => price %>
+	<br><br>
+
+		<div class="col-xs-4 col-xs-offset-4">
+			<p><%= f.submit "購入を確定する", class: "btn btn-success"%></p>
+		</div>
+
+<% end %>
+</div>
 
 

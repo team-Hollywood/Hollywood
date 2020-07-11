@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   has_many :ordered_items
   belongs_to :genre
 
+  validates :is_valid, presence: true
   validates :discription, presence: true
   validates :name, presence: true
   validates :image, presence: true
