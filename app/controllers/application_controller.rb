@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protected
   def after_sign_in_path_for(resource)
     if customer_signed_in?
-      public_products_path
+      root_path
     elsif admin_signed_in?
       admins_homes_top_path
     end

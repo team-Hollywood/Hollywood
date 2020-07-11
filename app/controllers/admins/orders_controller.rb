@@ -17,7 +17,7 @@ class Admins::OrdersController < ApplicationController
       @ordered_item.update(production_status: 1)
   		redirect_to admins_orders_path
   	else
-  		render :show
+  		redirect_to admins_orders_path
   	end
   end
 
