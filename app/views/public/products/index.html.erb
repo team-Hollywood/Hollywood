@@ -3,13 +3,13 @@
     <div class="col-xs-2">
       <div class="serch-bar-index">
         <h4>ジャンル検索</h4>
-        <% @genres.each do |genre|%>
-          <div class="one-genre">
+        <div class="one-genre">
+          <% @genres.each do |genre|%>
             <%= link_to public_products_path(@products, genre_id: genre.id) do %>
-              <%= genre.name %>
+              <p><%= genre.name %></p>
             <% end %>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
 
