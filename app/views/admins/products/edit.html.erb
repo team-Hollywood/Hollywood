@@ -7,27 +7,31 @@
   	<% end %>
 
 	<%= form_for(@product, url:admins_product_path(@product[:id])) do |f| %>
-	<div class="col-xs-4 form">
+	<div class="col form">
+		<div class="show-image">
 		<%= attachment_image_tag @product, :image, size:"300x200", format:'jpeg', fallback: "no_image.jpg" %>
 		<%= f.attachment_field :image, placeholder: "ファイルを選択" %>
-	</div>
-	<div class="col-xs-8 form">
-		<dt><label>商品名</label></dt>
-		<dd><%= f.text_field :name ,size: 22 %><br></dd>
+		</div>
+		<div class="explanation" >
+			<div class="show-product">
+				<dt><label>商品名</label></dt>
+				<dd><%= f.text_field :name ,class: "status" %></dd><br>
 
-		<dt><label>商品説明</label></dt>
-		<dd><%= f.text_area :discription ,size: "21x5" %><br></dd>
+				<dt><label>商品説明</label></dt>
+				<dd><%= f.text_area :discription ,class: "status sweets" %></dd><br>
 
-		<dt><label>ジャンル</label></dt>
-		<dd><%= f.collection_select :genre_id, Genre.all, :id, :name , {}, class: "status" %><br></dd>
+				<dt><label>ジャンル</label></dt>
+				<dd><%= f.collection_select :genre_id, Genre.all, :id, :name , {}, class: "status" %></dd><br>
 
-		<dt><label>表示価格</label></dt>
-		<dd><%= f.text_field :tax_excluded_price , size: 22 %>円<br></dd>
+				<dt><label>表示価格</label></dt>
+				<dd><%= f.text_field :tax_excluded_price ,class: "status" %>円</dd><br>
 
-		<dt><label>販売ステータス</label></dt>
-		<dd><%= f.select :is_valid, [['販売中','true'],['販売中止','false']] , {}, class: "status" %><br></dd>
+				<dt><label>販売ステータス</label></dt>
+				<dd><%= f.select :is_valid, [['販売中','true'],['販売中止','false']] , {}, class: "status" %></dd><br>
 
-		<div class="button"><%= f.submit "変更を保存" , class:"btn btn-info" %></div>
+				<div class="button"><%= f.submit "変更を保存" , class:"btn btn-info" %></div>
+			</div>
+		</div>
 	</div>
 	<% end %>
 </div>

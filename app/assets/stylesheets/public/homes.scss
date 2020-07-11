@@ -53,11 +53,13 @@ h3 {
 .serch-bar-top h4 {
   border-bottom: double 1px;
   text-align: center;
-  padding: 5px 5px
+  padding: 5px 5px；
 }
 
-.col-xs-3 {
-	position: relative;
+.serch-bar h4 {
+  border-bottom: double 1px;
+  text-align: center;
+  padding: 5px 5px
 }
 
 .one-genre p {
@@ -80,4 +82,9 @@ h3 {
 
 .link-index {
 	padding-top: 120px;
+}
+
+.product-image {
+	display: inline-block;
+	margin-left: 10px;
 }

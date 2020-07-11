@@ -11,7 +11,10 @@ class Admins::OrdersController < ApplicationController
 
   def update
   	@order = Order.find(params[:id])
-  	if @order.update(order_params)
+    @order.update(order_params)
+    @ordered_item = @order.ordered_items
+  	if @order.order_status == "入金確認"
+      @ordered_item.update(production_status: 1)
   		redirect_to admins_orders_path
   	else
   		render :show
