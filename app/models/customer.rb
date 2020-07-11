@@ -17,4 +17,8 @@ class Customer < ApplicationRecord
   validates :phone, presence: true
   validates :email, presence: true
   validates :is_registered, inclusion: {in: [true, false]}
+
+  def active_for_authentication?
+    super && (self.is_registered == true)
+  end
 end
