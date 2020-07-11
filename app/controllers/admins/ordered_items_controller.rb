@@ -11,7 +11,7 @@ class Admins::OrderedItemsController < ApplicationController
     if  @order.ordered_items.where(production_status: 3).count == @order.ordered_items.count
         @order.update(order_status: 3)
     end
-    redirect_to admins_orders_path
+    redirect_to admins_order_path(@order.id)
   end
 
   private

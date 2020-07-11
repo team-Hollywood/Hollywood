@@ -6,9 +6,9 @@
    		<li><%= message %></li>
   	<% end %>
 
+  	<%= form_for(@product, url: admins_products_path) do |f| %>
 	<div class="col form">
 		<div class="show-image">
-		<%= form_for(@product, url: admins_products_path) do |f| %>
 			<%= attachment_image_tag @product, :image, size:"300x200", format:'jpeg', fallback: "no_image.jpg" %>
 			<%= f.attachment_field :image %>
 		</div>
@@ -32,8 +32,8 @@
 			<div class="button"><%= f.submit "新規登録", class:"btn btn-info"%></div>
 			</div>
 		</div>
-		<% end %>
 	</div>
+	<% end %>
 </div>
 </div>
 
