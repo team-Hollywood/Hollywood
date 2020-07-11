@@ -1,62 +1,61 @@
 <% total = 0 %>
 <div class="container">
-	<div class="row">
-		<div class="col">
-		<h2>注文履歴詳細</h2>
-		<label>購入者</label>
-		<%= @order.customer.lastname %>
-		<%= @order.customer.firstname %><br>
-		<label>配送先</label>
-		<%= @order.zip_code %><%= @order.address %><br>
-		<%= @order.name %><br>
-		<label>支払い方法</label>
-		<%= @order.payment_method %><br>
-		<label>注文ステータス</label>
-		<%= form_for(@order, url: admins_order_path) do |f| %>
-		<%= f.select :order_status, Order.order_statuses.keys %>
-		<%= f.submit "更新" %>
-		<% end %>
-		</div>
+	<h2>注文履歴詳細</h2>
+	<div class="row row_1">
+		<dt><label>購入者</label></dt>
+		<%= link_to admins_customer_path(params[:id]) do %>
+		<dd><%= @order.customer.lastname %>
+		<%= @order.customer.firstname %><% end %></dd><br>
+		<dt><label>配送先</label></dt>
+		<dd><%= @order.zip_code %><%= @order.address %><br>
+		<%= @order.name %></dd><br>
+		<dt><label>支払い方法</label></dt>
+		<dd><%= @order.payment_method %></dd><br>
+		<dt><label>注文ステータス</label></dt>
+		<dd><%= form_for(@order, url: admins_order_path) do |f| %>
+			<%= f.select :order_status, Order.order_statuses.keys %>
+			<%= f.submit "更新",class: "btn btn-primary btn-xs" %>
+			<% end %>
+		</dd>
 	</div>
 
 	<div class="row">
 		<div class="col-xs-9">
+		<% @order.ordered_items.each do |order| %>
+		<%= form_for(order, url: admins_ordered_item_path(order.id)) do |f| %>
 		<table class="table">
 			<thead>
 				<tr>
 					<th>商品名</th>
-					<th>単価（税込み）</th>
+					<th>単価（税込み)</th>
 					<th>数量</th>
 					<th>小計</th>
 					<th>制作ステータス</th>
-					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-			<% @order.ordered_items.each do |order| %>
 			<tr>
 				<td><%= order.product.name %></td>
 				<td><%= order.tax_included_price.to_s(:delimited) %></td>
 				<td><%= order.amount %></td>
 				<% subtotal = order.tax_included_price * order.amount %>
 				<td><%= subtotal.to_s(:delimited) %></td>
-			<%= form_for(order, url: admins_ordered_item_path) do |f| %>
-				<td><%= f.select :production_status,  OrderedItem.production_statuses.keys %></td>
-				<td><%= f.submit "更新" %></td>
-			<% end %>
+				<td><%= f.select :production_status,  OrderedItem.production_statuses.keys %>
+					<%= f.submit "更新",class: "btn btn-primary btn-xs" %></td>
 			</tr>
 			<% total += subtotal %>
-			<% end %>
 			</tbody>
 		</table>
+		<% end %>
+		<% end %>
 		</div>
 		<div class="col-xs-3">
-			<label>商品合計</label>
-			<%= total.to_s(:delimited) %>円
-			<label>送料</label>
-			<%= @order.delivery_fee %>円
-			<label>請求金額合計</label>
-			<%= @order.total.to_s(:delimited) %>円
+			<dt><label>商品合計</label></dt>
+			<%= total.to_s(:delimited) %>円<br>
+			<dt><label>送料</label></dt>
+			<%= @order.delivery_fee %>円<br>
+			<dt><label>請求金額合計</label></dt>
+			<%= @order.total.to_s(:delimited) %>円<br>
 		</div>
 	</div>
 </div>

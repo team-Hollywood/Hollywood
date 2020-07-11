@@ -44,15 +44,16 @@ h3 {
 }
 
 .serch-bar {
-    border: solid 1px #000000;
-    position: absolute;
-    left: 80px;
-    top: 100px;
-
+  height: 500px;
+  margin-top: 100px;
+  background-color: #F2F2F2;
+  border: solid 1px;
 }
 
-.col-xs-3 {
-	position: relative;
+.serch-bar h4 {
+  border-bottom: double 1px;
+  text-align: center;
+  padding: 5px 5px
 }
 
 .one-genre {
@@ -60,4 +61,9 @@ h3 {
 	padding-left: 10px;
 	padding-bottom: 10px;
 	font-size: 20px;
+}
+
+.product-image {
+	display: inline-block;
+	margin-left: 10px;
 }

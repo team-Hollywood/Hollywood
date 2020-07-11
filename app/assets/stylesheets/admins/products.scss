@@ -3,32 +3,39 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.form {
-	margin-top: 100px;
-	position: absolute;
+.explanation {
+	display: inline-block;
+	margin-left:50px;
 }
 
-dt {
-	padding-left:100px;
-	width: 350px;
-	float: left;
+.show-image {
 	display: inline-block;
-	clear:both;
+	float: left;
+}
+
+.show-product {
+	display: block;
 }
 
 dd {
-	float: left;
-	width: 200px;
 	display: inline-block;
-	margin-bottom: 20px;
+	width: 200px;
 }
 
-.button{
-	position:relative;
-	top: 300px;
-	float: rigth;
+.button {
+	float:right;
+}
+
+dt {
+	display: inline-block;
+	width: 150px;
+	margin-bottom: 15px;
 }
 
 .status {
 	width: 168px;
+}
+
+.sweets {
+	height: 100px;
 }
