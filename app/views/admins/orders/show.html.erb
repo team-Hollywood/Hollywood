@@ -21,10 +21,10 @@
 
 	<div class="row">
 		<div class="col-xs-9">
-		<% @order.ordered_items.each do |order| %>
-		<%= form_for(order, url: admins_ordered_item_path(order.id)) do |f| %>
+		
 		<table class="table">
 			<thead>
+
 				<tr>
 					<th>商品名</th>
 					<th>単価（税込み)</th>
@@ -34,6 +34,8 @@
 				</tr>
 			</thead>
 			<tbody>
+								<% @order.ordered_items.each do |order| %>
+		<%= form_for(order, url: admins_ordered_item_path(order.id)) do |f| %>
 			<tr>
 				<td><%= order.product.name %></td>
 				<td><%= order.tax_included_price.to_s(:delimited) %></td>
@@ -44,10 +46,11 @@
 					<%= f.submit "更新",class: "btn btn-primary btn-xs" %></td>
 			</tr>
 			<% total += subtotal %>
+					<% end %>
+		<% end %>
 			</tbody>
 		</table>
-		<% end %>
-		<% end %>
+
 		</div>
 		<div class="col-xs-3">
 			<dt><label>商品合計</label></dt>
