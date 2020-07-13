@@ -25,31 +25,29 @@
 		</div>
 
 		<h4>注文内容</h4>
-		<div class="table-responsive">
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>商品</th>
-						<th>単価（税込）</th>
-						<th>個数</th>
-						<th>小計</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% total = 0 %>
-					<% @order.ordered_items.each do |ordered_item| %>
-					<tr>
-						<td><%= ordered_item.product.name %></td>
-						<td><%= ordered_item.tax_included_price %></td>
-						<td><%= ordered_item.amount %></td>
-						<% subtotal = (ordered_item.amount * ordered_item.tax_included_price) %>
-						<% total += subtotal %>
-		                <td><%= subtotal.round.to_s(:delimited) %></td>
-					</tr>
-					<% end %>
-				</tbody>
-			</table>
-		</div>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>商品</th>
+					<th>単価（税込）</th>
+					<th>個数</th>
+					<th>小計</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% total = 0 %>
+				<% @order.ordered_items.each do |ordered_item| %>
+				<tr>
+					<td><%= ordered_item.product.name %></td>
+					<td><%= ordered_item.tax_included_price %></td>
+					<td><%= ordered_item.amount %></td>
+					<% subtotal = (ordered_item.amount * ordered_item.tax_included_price) %>
+					<% total += subtotal %>
+		            <td><%= subtotal.round.to_s(:delimited) %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
 	</div>
 
 
