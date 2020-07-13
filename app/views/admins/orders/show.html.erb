@@ -21,8 +21,6 @@
 
 	<div class="row">
 		<div class="col-xs-9">
-		<% @order.ordered_items.each do |order| %>
-		<%= form_for(order, url: admins_ordered_item_path(order.id)) do |f| %>
 		<table class="table">
 			<thead>
 				<tr>
@@ -33,6 +31,7 @@
 					<th>制作ステータス</th>
 				</tr>
 			</thead>
+			<% @order.ordered_items.each do |order| %>
 			<tbody>
 			<tr>
 				<td><%= order.product.name %></td>
@@ -40,14 +39,14 @@
 				<td><%= order.amount %></td>
 				<% subtotal = order.tax_included_price * order.amount %>
 				<td><%= subtotal.to_s(:delimited) %></td>
-				<td><%= f.select :production_status,  OrderedItem.production_statuses.keys %>
-					<%= f.submit "更新",class: "btn btn-primary btn-xs" %></td>
+				<td><%= form_for(order, url: admins_ordered_item_path(order.id)) do |f| %>
+					<%= f.select :production_status,  OrderedItem.production_statuses.keys %>
+					<%= f.submit "更新",class: "btn btn-primary btn-xs" %><% end %></td>
 			</tr>
 			<% total += subtotal %>
 			</tbody>
+			<% end %>
 		</table>
-		<% end %>
-		<% end %>
 		</div>
 		<div class="col-xs-3">
 			<dt><label>商品合計</label></dt>

@@ -34,7 +34,6 @@ body {
 
 footer{
 	width: 100%;
-
 	background-color:#faf0e6;
 	position: absolute;
     bottom: 0;
@@ -43,7 +42,7 @@ footer{
 .py-0 {
   padding-top: 5px !important;
   padding-bottom: 5px !important;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-right: 10px;
 }
 
@@ -58,4 +57,9 @@ footer{
 
 .registration-new-text{
 	padding-left:60%;
+}
+
+.search-form {
+padding-right:50px;
+padding-top: 35px;
 }
