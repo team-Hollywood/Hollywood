@@ -31,6 +31,7 @@
 					<th>制作ステータス</th>
 				</tr>
 			</thead>
+			<% @order.ordered_items.each do |order| %>
 			<tbody>
 		<% @order.ordered_items.each do |order| %>
 			<tr>
@@ -49,8 +50,8 @@
 		
 		<% end %>
 			</tbody>
+			<% end %>
 		</table>
-
 		</div>
 		<div class="col-xs-3">
 			<dt><label>商品合計</label></dt>
