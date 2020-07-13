@@ -1,11 +1,11 @@
 class Public::ProductsController < ApplicationController
   def index
-    @genres = Genre.all
+    @genres = Genre.where(is_valid: true)
 
     if params[:genre_id]
-      @products = Product.where(genre_id: params[:genre_id]).page(params[:page]).per(6)
+      @products = Product.where(genre_id: params[:genre_id], is_valid: true).page(params[:page]).per(6)
     else
-      @products = Product.all.page(params[:page]).per(6)
+      @products = Product.where(is_valid: true).page(params[:page]).per(6)
     end
   end
 
