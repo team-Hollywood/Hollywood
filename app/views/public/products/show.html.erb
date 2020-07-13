@@ -32,11 +32,15 @@
           </div>
           <% if customer_signed_in? %>
             <div align="right" class="amount-select-box">
-              <%= form_with(model: @cart_item, url: public_cart_items_path) do |f|%>
-                <%= f.hidden_field :product_id, :value => params[:id] %>
-                <%= f.label :amount, "数量"%>
-                <%= f.select :amount, [1,2,3,4,5,6,7,8,9]%>
-                <%= f.submit "カートに入れる", class: "btn btn-primary"%>
+              <% if @product.is_valid == true %>
+                <%= form_with(model: @cart_item, url: public_cart_items_path) do |f|%>
+                  <%= f.hidden_field :product_id, :value => params[:id] %>
+                  <%= f.label :amount, "数量"%>
+                  <%= f.select :amount, [1,2,3,4,5,6,7,8,9]%>
+                  <%= f.submit "カートに入れる", class: "btn btn-primary"%>
+                <% end %>
+              <% else %>
+                <h4 class="btn btn-danger">売り切れ</h4>
               <% end %>
             </div>
           <% end %>

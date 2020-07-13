@@ -19,19 +19,23 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @cart_items = CartItem.where(customer_id: current_customer.id)
-    @order.save
+    if @order.save
 
-    @cart_items.each do |cart_item|
-      @ordered_item = OrderedItem.new
-      @ordered_item.product_id = cart_item.product_id
-      @ordered_item.order_id = @order.id
-      @ordered_item.amount = cart_item.amount
-      @ordered_item.tax_included_price = (cart_item.product.tax_excluded_price * 1.1)
-      @ordered_item.save
+      @cart_items.each do |cart_item|
+        @ordered_item = OrderedItem.new
+        @ordered_item.product_id = cart_item.product_id
+        @ordered_item.order_id = @order.id
+        @ordered_item.amount = cart_item.amount
+        @ordered_item.tax_included_price = (cart_item.product.tax_excluded_price * 1.1)
+        @ordered_item.save
+      end
+      # @orderと@order_itemをsaveしたらカート内の商品を削除
+      @cart_items.destroy_all
+      redirect_to public_orders_thanks_path
+    else
+        redirect_to new_public_order_path, notice: "配送先をお選びください。注文は未完了です。"
     end
-    # @orderと@order_itemをsaveしたらカート内の商品を削除
-    @cart_items.destroy_all
-    redirect_to public_orders_thanks_path
+
   end
 
   def thanks
@@ -43,6 +47,9 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    if @order.customer_id != current_customer.id
+      redirect_to public_orders_path
+    end
   end
 
   private

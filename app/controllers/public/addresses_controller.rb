@@ -17,6 +17,9 @@ class Public::AddressesController < ApplicationController
 
   def edit
     @address = Address.find(params[:id])
+    if @address.customer_id != current_customer.id
+      redirect_to public_addresses_path
+    end
   end
 
   def update
