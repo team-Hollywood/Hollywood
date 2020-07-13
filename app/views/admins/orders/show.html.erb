@@ -33,6 +33,7 @@
 			</thead>
 			<% @order.ordered_items.each do |order| %>
 			<tbody>
+		<% @order.ordered_items.each do |order| %>
 			<tr>
 				<td><%= order.product.name %></td>
 				<td><%= order.tax_included_price.to_s(:delimited) %></td>
@@ -41,9 +42,13 @@
 				<td><%= subtotal.to_s(:delimited) %></td>
 				<td><%= form_for(order, url: admins_ordered_item_path(order.id)) do |f| %>
 					<%= f.select :production_status,  OrderedItem.production_statuses.keys %>
-					<%= f.submit "更新",class: "btn btn-primary btn-xs" %><% end %></td>
+					<%= f.submit "更新",class: "btn btn-primary btn-xs" %>
+						<% end %>
+					</td>
 			</tr>
 			<% total += subtotal %>
+		
+		<% end %>
 			</tbody>
 			<% end %>
 		</table>
