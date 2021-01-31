@@ -1,3 +1,66 @@
 // Place all the styles related to the public/products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// indexページ
+.products-index {
+  margin-top: 100px;
+}
+
+.serch-bar-index {
+  height: 500px;
+  margin-top: 100px;
+  background-color: #F2F2F2;
+  border: solid 1px;
+}
+
+.serch-bar-index h4 {
+  border-bottom: double 1px;
+  text-align: center;
+  padding: 5px 5px
+}
+
+
+
+
+.product-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width:100%;
+}
+
+.item-box-index {
+  position: relative;
+  width: 200px;
+  height: 170px;
+  margin-left: 40px;
+  margin-bottom: 60px
+}
+
+
+.item-text-index {
+  position: absolute;
+  bottom: 0;
+}
+
+// shoeページ
+
+.product-show {
+  margin-top: 100px;
+  height: 500px;
+}
+
+.item-image-show {
+  float: left;
+  margin: 0 50px
+}
+
+.item-detail {
+  margin: 40px 0;
+}
+
+
+.amount-select-box {
+  margin-top: 70px;
+}

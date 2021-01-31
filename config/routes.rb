@@ -3,10 +3,15 @@ Rails.application.routes.draw do
   namespace :public do
     resources :cart_items, only: [:create, :update, :destroy, :destroy_all, :index]
     resources :addresses, only: [:create, :update, :destroy, :edit, :index]
-    resources :orders, only: [:new, :confirm, :thanks, :index, :show, :create]
+    post "orders/confirm"
+    get "orders/thanks"
+    resources :orders, only: [:new, :index, :show, :create]
     resources :products, only: [:index, :show]
-    resource :customers, only: [:show, :edit, :update, :unsubscribe]
-    resource :homes, only: [:about]
+    resource :customers, only: [:show, :edit, :update]
+    get "customers/unsubscribe"
+    get "cart_items/destroy_all"
+    get "homes/about" => "public/homes/about"
+    patch "customers/hide" => "public/customers/hide" #退会時のupdateアクション
   end
 
   namespace :admins do
@@ -15,6 +20,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show, :update]
     resources :products, only: [:index, :new, :create, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :searches, only: [:index]
     get "homes/top"
   end
 

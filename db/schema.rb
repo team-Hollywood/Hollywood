@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_04_062833) do
+ActiveRecord::Schema.define(version: 2020_07_02_063916) do
 
   create_table "addresses", force: :cascade do |t|
-    t.integer "customers_id"
+    t.integer "customer_id"
     t.string "name"
     t.string "zip_code"
     t.string "address"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_07_04_062833) do
   end
 
   create_table "cart_items", force: :cascade do |t|
-    t.integer "customers_id"
+    t.integer "customer_id"
     t.integer "product_id"
     t.integer "amount"
     t.datetime "created_at", null: false
@@ -47,8 +47,6 @@ ActiveRecord::Schema.define(version: 2020_07_04_062833) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "lastname"
     t.string "firstname"
     t.string "lastname_kana"
@@ -57,13 +55,15 @@ ActiveRecord::Schema.define(version: 2020_07_04_062833) do
     t.string "address"
     t.string "phone"
     t.boolean "is_registered", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
-    t.boolean "is_valid"
+    t.boolean "is_valid", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -73,18 +73,18 @@ ActiveRecord::Schema.define(version: 2020_07_04_062833) do
     t.integer "order_id"
     t.integer "amount"
     t.integer "tax_included_price"
-    t.integer "production_status"
+    t.integer "production_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "customers_id"
+    t.integer "customer_id"
     t.string "name"
     t.string "zip_code"
     t.string "address"
-    t.integer "order_status"
-    t.integer "delivery_fee"
+    t.integer "order_status", default: 0
+    t.integer "delivery_fee", default: 800
     t.integer "total"
     t.integer "payment_method"
     t.datetime "created_at", null: false
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 2020_07_04_062833) do
 
   create_table "products", force: :cascade do |t|
     t.integer "genre_id"
-    t.boolean "is_valid"
+    t.boolean "is_valid", default: true
     t.string "name"
     t.integer "tax_excluded_price"
     t.text "discription"

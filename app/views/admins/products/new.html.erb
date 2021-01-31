@@ -1,2 +1,39 @@
-<h1>Admins::Products#new</h1>
-<p>Find me in app/views/admins/products/new.html.erb</p>
+<div class="container">
+<div class="row">
+	<h2>商品新規登録</h2>
+
+	<% @product.errors.full_messages.each do |message| %>
+   		<li><%= message %></li>
+  	<% end %>
+
+  	<%= form_for(@product, url: admins_products_path) do |f| %>
+	<div class="col form">
+		<div class="show-image">
+			<%= attachment_image_tag @product, :image, size:"300x200", format:'jpeg', fallback: "no_image.jpg" %>
+			<%= f.attachment_field :image %>
+		</div>
+		<div class="explanation" >
+			<div class="show-product">
+			<dt><label>商品名</label></dt>
+			<dd><%= f.text_field :name ,class: "status" %></dd><br>
+
+			<dt><label>商品説明</label></dt>
+			<dd><%= f.text_area :discription ,class: "status sweets" %></dd><br>
+
+			<dt><label>ジャンル</label></dt>
+			<dd><%= f.collection_select :genre_id, Genre.all, :id, :name , {}, class: "status" %></dd><br>
+
+			<dt><label>表示価格</label></dt>
+			<dd><%= f.text_field :tax_excluded_price ,class: "status" %>円</dd><br>
+
+			<dt><label>販売ステータス</label></dt>
+			<dd><%= f.select :is_valid , [['販売中','true'],['販売中止','false']] , {}, class: "status"%><br></dd>
+
+			<div class="button"><%= f.submit "新規登録", class:"btn btn-info"%></div>
+			</div>
+		</div>
+	</div>
+	<% end %>
+</div>
+</div>
+

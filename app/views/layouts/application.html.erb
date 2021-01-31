@@ -12,26 +12,44 @@
   <body>
     <header>
       <nav>
-        <ul>
+        <div class="logo">ながのCAKE</div>
+        <ul class="nav navbar-nav navbar-right">
           <% if customer_signed_in? %>
-            <li>ユーザー</li>
-            <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
+            <li class="name">ようこそ<%= current_customer.lastname %>さん！</li>
+            <li><%= link_to "Top", root_path , class:"btn btn-info py-0" %></li>
+            <li><%= link_to "マイページ", public_customers_path(current_customer.id) , class:"btn btn-info py-0" %></li>
+            <li><%= link_to "商品一覧", public_products_path , class:"btn btn-info py-0" %></li>
+            <li><%= link_to "カート", public_cart_items_path , class:"btn btn-info py-0" %></li>
+            <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete , class:"btn btn-info py-0 log" %></li>
           <% elsif admin_signed_in? %>
-            <li>管理者</li>
-            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+            <li><%= link_to "商品一覧", admins_products_path , class:"btn btn-info py-0" %>
+            </li>
+            <li><%= link_to "会員一覧", admins_customers_path , class:"btn btn-info py-0" %></li>
+            <li><%= link_to "注文一覧", admins_orders_path , class:"btn btn-info py-0" %></li>
+            <li><%= link_to "ジャンル一覧", admins_genres_path , class:"btn btn-info py-0" %></li>
+            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete  , class:"btn btn-info py-0 log"%></li>
+            <div class="search-form" style="margin-top: 30px; text-align: right;">
+              <%= form_tag(admins_searches_path, method: :get) do %>
+                <%= text_field_tag 'search[word]' %>
+                <%= submit_tag '検索' %>
+              <% end %>
+            </div>
           <% else %>
-            <li>ゲストユーザー</li>
-            <li><%= link_to "新規登録", new_customer_registration_path %></li>
-            <li><%= link_to "ログイン", new_customer_session_path %></li>
+            <li><%= link_to "About", public_homes_about_path , class:"btn btn-info py-0" %></li>
+            <li><%= link_to "商品一覧", public_products_path , class:"btn btn-info py-0" %></li>
+            <li><%= link_to "新規登録", new_customer_registration_path , class:"btn btn-info py-0" %></li>
+            <li><%= link_to "ログイン", new_customer_session_path , class:"btn btn-info py-0 log" %></li>
           <% end %>
         </ul>
       </nav>
     </header>
-    
+
+
+    <div class="container main">
       <%= notice %>
 
       <%= yield %>
     </div>
-    
+    <footer></footer>
   </body>
 </html>

@@ -1,2 +1,58 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
+<div class="row">
+		<div class="col-xs-6 col-xs-offset-3">
+
+		<h2>マイページ</h2>
+
+		<h４>登録情報</h４>
+		<%= link_to "編集する", edit_public_customers_path, class: "btn btn-primary" %>
+		<%= link_to "パスワードを変更する", "#", class: "btn btn-primary" %>
+		<br><br>
+
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+					<th>氏名</th>
+					<td><%= current_customer.lastname %>	<%= current_customer.firstname %></td>
+				</tr>
+
+				<tr>
+					<th>カナ</th>
+					<td><%= current_customer.lastname_kana %>	<%= current_customer.firstname_kana %></td>
+				</tr>
+
+				<tr>
+					<th>郵便番号</th>
+					<td><%= current_customer.zip_code %></td>
+				</tr>
+
+				<tr>
+					<th>住所</th>
+					<td><%= current_customer.address %></td>
+				</tr>
+
+				<tr>
+					<th>電話番号</th>
+					<td><%= current_customer.phone %></td>
+				</tr>
+
+				<tr>
+					<th>メールアドレス</th>
+					<td><%= current_customer.email %></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div>
+</div>
+
+
+<div class="row">
+	<div class="col-xs-6 col-xs-offset-3">
+
+		<table class="table">
+			<tr><th>配送先</th><th><%= link_to "一覧を見る", public_addresses_path, class: "btn btn-primary" %></th></tr>
+			<tr><th>注文履歴</th><th><%= link_to "一覧を見る", public_orders_path, class: "btn btn-primary" %></h4></th></tr>
+		</table>
+
+	</div>
+</div>

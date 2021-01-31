@@ -1,2 +1,71 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<div class="container">
+	<div class="row">
+		<h2>注文履歴詳細</h2>
+		<br><br>
+	</div>
+	<div class="col-xs-9">
+		<h4>注文情報</h4>
+		<div class="table-responsive">
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<th>注文日</th><td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+					</tr>
+					<tr>
+						<th>配送先</th><td><%= @order.address %></td>
+					</tr>
+					<tr>
+						<th>支払方法</th><td><%= @order.payment_method %></td>
+					</tr>
+					<tr>
+						<th>ステータス</th><td><%= @order.order_status %></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<h4>注文内容</h4>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>商品</th>
+					<th>単価（税込）</th>
+					<th>個数</th>
+					<th>小計</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% total = 0 %>
+				<% @order.ordered_items.each do |ordered_item| %>
+				<tr>
+					<td><%= ordered_item.product.name %></td>
+					<td><%= ordered_item.tax_included_price %></td>
+					<td><%= ordered_item.amount %></td>
+					<% subtotal = (ordered_item.amount * ordered_item.tax_included_price) %>
+					<% total += subtotal %>
+		            <td><%= subtotal.round.to_s(:delimited) %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+
+
+	<div class="col-xs-3">
+		<h4>請求情報</h4>
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+					<th>商品合計</th><td><%= total.round.to_s(:delimited) %></td>
+				</tr>
+				<tr>
+					<th>配送料</th><td>800</td>
+				</tr>
+				<tr>
+					<th>ご請求額</th><td><%= (total + 800).round.to_s(:delimited) %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+

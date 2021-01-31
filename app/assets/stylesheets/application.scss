@@ -1,0 +1,82 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+header {
+	height: 100px;
+	background-color:#faf0e6;
+}
+
+body {
+	height: 100vh;
+	position: relative;
+}
+
+footer{
+	width: 100%;
+	background-color:#faf0e6;
+	position: absolute;
+    bottom: 0;
+}
+
+.py-0 {
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+.log {
+	margin-right: 50px;
+}
+
+.name {
+	 margin-top: 30px;
+	 margin-right: 100px;
+}
+
+.registration-new-text{
+	padding-left:60%;
+}
+
+.search-form {
+padding-right:50px;
+padding-top: 35px;
+}
+
+.logo{
+	height: 100px;
+	width: 100px;
+	padding-top: 20px;
+	padding-left: 15px;
+	margin-left:50px;
+	float: left;
+    font-family: 'ヒラギノ丸ゴ ProN', sans-serif;
+
+	color: orange;
+	border: 10px double orange;
+	background-color: #faf0e6;
+
+	border-radius: 50%;
+	box-shadow: 2px 2px 2px #999;
+}

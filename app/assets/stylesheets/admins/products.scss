@@ -1,3 +1,65 @@
 // Place all the styles related to the admins/products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.explanation {
+	display: inline-block;
+	margin-left:50px;
+}
+
+.show-image {
+	display: inline-block;
+	float: left;
+}
+
+.show-product {
+	display: block;
+}
+
+dd {
+	display: inline-block;
+	width: 200px;
+}
+
+.button {
+	float:right;
+}
+
+dt {
+	display: inline-block;
+	width: 150px;
+	margin-bottom: 15px;
+}
+
+.status {
+	width: 168px;
+}
+
+.parents{
+	position:relative;
+}
+
+.new-btn{
+  display: inline-block;
+  text-decoration: none;
+  background: white;
+  color: black;
+  width: 60px;
+  height: 60px;
+  line-height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+  overflow: hidden;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  border-bottom: solid 3px #a9a9a9;
+  border-right:solid 1px #a9a9a9;
+  border-left:solid 1px #a9a9a9;
+  border-top:solid 1px #a9a9a9;
+  transition: .4s;
+  font-size: 40px;
+  position:absolute;
+  top: 0;
+  right: 20px;
+}
